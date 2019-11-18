@@ -4,10 +4,21 @@ using UnityEngine;
 
 public class HexTileController : MonoBehaviour
 {
+    // !!!!!!!!!! Don't Do it like this, Use a raycast to get the tile
+    // It can still have coordinates and such, just dont use the logic here
+    /////////////////////////////
+
+
+    
     // Start is called before the first frame update
+    private GameObject owner; // Will be a Type of Player
+    private Vector3 originPos;
+    private Vector3 raisedPos;
     void Start()
     {
         // Test Commit again
+        originPos = this.transform.position;
+        raisedPos = new Vector3(this.transform.position.x, this.transform.position.y + .5f, this.transform.position.z);
     }
 
     // Update is called once per frame
@@ -17,13 +28,11 @@ public class HexTileController : MonoBehaviour
     }
 
     void OnMouseEnter() {
+        this.transform.position = raisedPos;
         
-        Component halo = GetComponent("Halo");
-        halo.GetType().GetProperty("enabled").SetValue(halo, true, null);
     }
 
     void OnMouseExit() {
-        Component halo = GetComponent("Halo");
-        halo.GetType().GetProperty("enabled").SetValue(halo, false, null);
+       this.transform.position = originPos;
     }
 }
