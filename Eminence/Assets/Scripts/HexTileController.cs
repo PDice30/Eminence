@@ -17,6 +17,7 @@ public class HexTileController : MonoBehaviour
     }
 
     void OnMouseEnter() {
+        
         Component halo = GetComponent("Halo");
         halo.GetType().GetProperty("enabled").SetValue(halo, true, null);
     }
